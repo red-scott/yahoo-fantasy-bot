@@ -103,6 +103,9 @@ object Arbiter {
     private fun setupJobs() {
         // Times are in GMT since it is not effected by DST
         JobRunner.createJob(CloseScoreUpdateJob::class.java, "0 30 23 ? 9-1 MON *")
+
+/* nobody wants MatchUps or score updates */
+/*
         JobRunner.createJob(MatchUpJob::class.java, "0 30 23 ? 9-1 THU *")
         JobRunner.createJob(StandingsJob::class.java, "0 30 16 ? 9-1 TUE *")
 
@@ -112,6 +115,7 @@ object Arbiter {
         JobRunner.createJob(ScoreUpdateJob::class.java, "0 00 0 ? 9-1 MON *")
         JobRunner.createJob(ScoreUpdateJob::class.java, "0 55 3 ? 9-1 MON *")
         JobRunner.createJob(ScoreUpdateJob::class.java, "0 55 3 ? 9-1 TUE *")
+*/
 
         JobRunner.runJobs()
     }
