@@ -27,15 +27,18 @@ object Arbiter {
     }
 
     fun start() {
+        println("XXX start()")
         Observable.interval(0, 15, TimeUnit.SECONDS)
             .subscribe {
                 try {
                     val event = DataRetriever.getTransactions()
                     val latestTimeChecked = Postgres.latestTimeChecked
                     TransactionsBridge.dataObserver.onNext(Pair(latestTimeChecked, event))
+                    println("XXX checking transactions")
                     Postgres.saveLastTimeChecked()
                 } catch (e: Exception) {
                     println(e.localizedMessage)
+                    println("XXX exception")
                 }
             }
     }
@@ -103,7 +106,6 @@ object Arbiter {
     private fun setupJobs() {
         // Times are in GMT since it is not effected by DST
         JobRunner.createJob(CloseScoreUpdateJob::class.java, "0 30 23 ? 9-1 MON *")
-
 /* nobody wants MatchUps or score updates */
 /*
         JobRunner.createJob(MatchUpJob::class.java, "0 30 23 ? 9-1 THU *")
