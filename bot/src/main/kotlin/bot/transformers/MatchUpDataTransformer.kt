@@ -4,7 +4,7 @@ import io.reactivex.Observable
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import bot.messaging_services.Message
-import kotlin.math.abs
+import kotlin.math.min
 
 fun Observable<Document>.convertToMatchUpObject(): Observable<Pair<Team, Team>> =
     flatMapIterable {
@@ -42,7 +42,8 @@ fun Observable<Pair<Team, Team>>.convertToMatchUpMessage(): Observable<Message> 
 fun Observable<Pair<Team, Team>>.convertToScoreUpdateMessage(closeScoreUpdate: Boolean = false): Observable<Message> =
     filter {
         if (closeScoreUpdate) {
-            abs(it.first.winProbability - it.second.winProbability) < 40.0
+            /* If the losing team has a 10% chance, it's still in play */
+            min(it.first.winProbability,it.second.winProbability) >= 10.0
         } else {
             true
         }
