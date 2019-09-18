@@ -49,9 +49,13 @@ object Postgres {
 
                 if (row.next()) {
                     row.getLong("latest_time")
-                } else System.currentTimeMillis() / 1000
+                } else {
+                    println("XXX failed getting latest_time")
+                    System.currentTimeMillis() / 1000
+                }
 
             } catch (e: SQLException) {
+                println("XXX SQL Exception")
                 println(e.localizedMessage)
                 System.currentTimeMillis() / 1000
             }

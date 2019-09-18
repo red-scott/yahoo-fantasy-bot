@@ -53,7 +53,6 @@ object Arbiter {
     }
 
     private fun setupTransactionsBridge() {
-        println("XXX verifying transactions were set up")
         val transactions = TransactionsBridge.dataObservable
             .convertToTransactionMessage()
 
