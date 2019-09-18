@@ -15,7 +15,8 @@ fun Observable<Pair<Long, Document>>.convertToTransactionMessage(): Observable<M
             }
     }.filter {
         var timestamp = it.second.select("timestamp").text().toLong()
-        println("XXX timestamp: " + timestamp + "it.first: " + it.first)
+        if (timestamp >= it.first)
+            println("XXX timestamp: " + timestamp + ", it.first: " + it.first)
         timestamp >= it.first
     }.map {
         when (it.second.select("type").text()) {
