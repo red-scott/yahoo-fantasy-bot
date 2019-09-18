@@ -8,12 +8,15 @@ import shared.Postgres
 
 fun Observable<Pair<Long, Document>>.convertToTransactionMessage(): Observable<Message> =
     flatMap {
+        println("XXX convertToTransactionMessage")
         Observable.fromIterable(it.second.select("transaction"))
             .map { transaction ->
                 Pair(it.first, transaction)
             }
     }.filter {
-        it.second.select("timestamp").text().toLong() >= it.first
+        var timestamp = it.second.select("timestamp").text().toLong()
+        println("XXX timestamp: " + timestamp + "it.first: " + it.first)
+        timestamp >= it.first
     }.map {
         when (it.second.select("type").text()) {
             "add" -> addMessage(it.second)
