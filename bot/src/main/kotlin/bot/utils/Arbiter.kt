@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit
 
 object Arbiter {
     init {
+        println("XXX calling init")
         setupTransactionsBridge()
         setupScoreUpdateBridge()
         setupCloseScoreUpdateBridge()
