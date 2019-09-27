@@ -100,9 +100,11 @@ private fun addDropMessage(event: Element): Message {
     val finalMessageDropped = playersDropped.trimEnd().removeSuffix(",")
 
     return Message.Transaction.AddDrop(
-        "Team: $fantasyTeam\\n" +
-                "Added: $finalMessageAdded\\n" +
-                "Dropped: $finalMessageDropped"
+        ":rotating_light: **$fantasyTeam**\\n" +
+                "```diff\\n" +
+                "+ $finalMessageAdded\\n" +
+                "- $finalMessageDropped" +
+                "```"
     )
 }
 

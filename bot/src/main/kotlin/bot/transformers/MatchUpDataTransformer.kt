@@ -49,9 +49,9 @@ fun Observable<Pair<Team, Team>>.convertToScoreUpdateMessage(closeScoreUpdate: B
         }
     }.map {
         val message = "${it.first.name} vs. ${it.second.name}\\n" +
-                "${it.first.points} (${it.first.projectedPoints})" +
+                "${it.first.points}" +
                 " - " +
-                "${it.second.points} (${it.second.projectedPoints})"
+                "${it.second.points}"
 
         if (closeScoreUpdate) {
             Message.CloseScore(message)

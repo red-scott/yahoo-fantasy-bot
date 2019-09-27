@@ -337,7 +337,7 @@ internal class MatchUpDataTransformerKtTest {
         testObserver.assertValue { it is Message.Score }
         testObserver.assertValue {
             it.message == "TEST TEAM 1 vs. TEST TEAM 2\\n" +
-                    "129.86 (138.11) - 208.52 (131.0)"
+                    "129.86 - 208.52"
         }
     }
 }
