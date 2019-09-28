@@ -136,8 +136,8 @@ private fun tradeMessage(event: Element): Message {
     val finalMessageFromTradee = fromTradeeTeam.trimEnd().removeSuffix(",")
 
     return Message.Transaction.Trade(
-        "$trader traded: $finalMessageFromTradee\\n" +
-                "$tradee traded: $finalMessageFromTrader"
+        "$trader gets: $finalMessageFromTradee\\n" +
+                "$tradee gets: $finalMessageFromTrader"
     )
 }
 
