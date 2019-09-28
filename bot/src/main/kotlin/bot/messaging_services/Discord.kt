@@ -13,7 +13,7 @@ object Discord : MessagingService(MAX_MESSAGE_LENGTH) {
             val response =
                 Unirest.post(it)
                     .header("Content-Type", "application/json")
-                    .body("{\"content\" : \"```$message```\"}")
+                    .body("{\"content\" : \"$message\"}")
                     .asJson()
             println("Status Text: " + response.statusText + " | Status: " + response.status)
         }
